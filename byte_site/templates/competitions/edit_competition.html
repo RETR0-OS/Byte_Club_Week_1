@@ -1,0 +1,9 @@
+{% extends '../base.html' %}
+{% block content %}
+    <h1 class="text-center mt-5">Update Competition Details</h1>
+    <form action="" class="form-group bg-light p-5">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-primary text-center">
+    </form>
+{% endblock %}

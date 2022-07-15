@@ -1,0 +1,29 @@
+{% extends '../base.html' %}
+{% block content %}
+  <section id="Compete">
+    <div class="col-md-10 offset-md-1">
+        <h1 class="text-center mt-5">{{ competition.Competition_Title }}</h1>
+        {% if request.user.is_staff %}
+          <h4 class="text-center">{{ competition.Competition_Category }}</h4>
+          <div class="text-center mb-5">
+            <a href="{% url 'competitions:competition_edit' competition.slug %}" class="text-muted mb-5">Edit Competition Details</a>
+          </div>
+        {% else %}
+        <h4 class="text-center mb-5">{{ competition.Competition_Category }}</h4>
+        {% endif %}
+        <img src="{{competition.Competition_Graphic.url}}" alt="" style="width:80%;margin-left:10%;margin-right:10%">
+        <br>
+        <br>
+        <div class="mt-5 mb-5 text-center">
+          <span>{{competition.Competition_Details.html | safe}}</span>
+          <div class="d-grid gap-2">
+            {% if registered %}
+              <a href="{% url 'competitions:competition_register' competition.slug %}" class="btn btn-danger mt-5">Drop Out Of {{competition.Competition_Title}}</a>
+            {% else %}
+              <a href="{% url 'competitions:competition_register' competition.slug %}" class="btn btn-primary mt-5">Sign Up For {{competition.Competition_Title}}</a>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+  </section>
+{% endblock %}

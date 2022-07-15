@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% block extra_imports %}
+ {{ form.media }}
+{% endblock %}
+{% block content %}
+  <section id="Add_Competition">
+    <h1 class="text-center mt-3">Add A New Competition</h1>
+    <div class="col-md-10 offset-md-1 mt-5">
+      <form method="POST" class="bg-light p-5 form-group", enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="" class="btn btn-primary" value="Add Competition">
+      </form>
+    </div>
+  </section>
+{% endblock %}

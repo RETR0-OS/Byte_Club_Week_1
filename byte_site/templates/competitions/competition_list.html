@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+
+{% block content %}
+  <section id="Compete">
+    <div class="col-md-10 offset-md-1 mt-5">
+      {% for competition in competition_list %}
+        <div class="card mb-3 shadow p-1 bg-body rounded">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ competition.Competition_Graphic.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{competition.Competition_Title}}</h5>
+                <p class="card-text"><small class="text-muted">Registeration ends on: {{ competition.Registration_End_Date |date:"D, d M Y" }}</small></p>
+                <hr>
+                <p class="card-text">{{competition.Competition_Details.html | safe | slice:":60"}}</p>
+                <br>
+                <a href="{% url 'competitions:competition_details' competition.slug %}" class="btn btn-sm btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
